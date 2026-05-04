@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kicad-condenser"
+version = "0.1.0"
+description = "Condense KiCad schematics into a positional-free JSON representation for LLM/electrical analysis"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+kicad-condenser = "kicad_condenser.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

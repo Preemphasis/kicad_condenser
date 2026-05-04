@@ -1,0 +1,41 @@
+{
+  "project": "hierarchical",
+  "components": [
+    {
+      "reference": "C1",
+      "value": "100n",
+      "footprint": "Capacitor_SMD:C_0402",
+      "datasheet": "~",
+      "properties": {},
+      "pins": [
+        {"number": "1", "name": "~", "type": "passive", "net": "GND"},
+        {"number": "2", "name": "~", "type": "passive", "net": "SIGNAL"}
+      ]
+    },
+    {
+      "reference": "R1",
+      "value": "4k7",
+      "footprint": "Resistor_SMD:R_0402",
+      "datasheet": "~",
+      "properties": {},
+      "pins": [
+        {"number": "1", "name": "~", "type": "passive", "net": "SIGNAL"},
+        {"number": "2", "name": "~", "type": "passive", "net": "VCC"}
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "GND",
+      "pins": [{"reference": "C1", "pin": "1"}]
+    },
+    {
+      "name": "SIGNAL",
+      "pins": [{"reference": "C1", "pin": "2"}, {"reference": "R1", "pin": "1"}]
+    },
+    {
+      "name": "VCC",
+      "pins": [{"reference": "R1", "pin": "2"}]
+    }
+  ]
+}

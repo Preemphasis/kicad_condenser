@@ -1,0 +1,64 @@
+(kicad_sch
+  (version 20231120)
+  (generator kicad_condenser_test)
+  (uuid "aa100000-0000-0000-0000-000000000001")
+
+  (lib_symbols
+    (symbol "Device:R"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "R" (id 0) (at 0 0 0))
+      (property "Value" "R" (id 1) (at 0 0 0))
+      (property "Footprint" "" (id 2) (at 0 0 0))
+      (property "Datasheet" "~" (id 3) (at 0 0 0))
+      (symbol "R_1_1"
+        (pin passive line (at 0 1.016 270) (length 0)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -1.016 90) (length 0)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+  )
+
+  ; R1 at (10, 10):  pin2 abs=(10,8.984)=VCC  pin1 abs=(10,11.016)=SIGNAL
+  (symbol "Device:R" (at 10 10 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "bb100000-0000-0000-0000-000000000001")
+    (property "Reference" "R1" (id 0) (at 10 10 0))
+    (property "Value" "4k7" (id 1) (at 10 10 0))
+    (property "Footprint" "Resistor_SMD:R_0402" (id 2) (at 10 10 0))
+    (property "Datasheet" "~" (id 3) (at 10 10 0))
+    (instances
+      (project "hierarchical"
+        (path "/aa100000-0000-0000-0000-000000000001"
+          (reference "R1")
+          (unit 1)
+        )
+      )
+    )
+  )
+
+  ; VCC wire + label
+  (wire (pts (xy 10 5) (xy 10 8.984)))
+  (label "VCC" (at 10 5 0))
+
+  ; SIGNAL wire from R1-pin1 (10,11.016) to sheet pin at (10,15)
+  (wire (pts (xy 10 11.016) (xy 10 15)))
+
+  ; Hierarchical sheet referencing sub.kicad_sch
+  ; Sheet pin "SIGNAL" at (10,15) connects SIGNAL net into sub-sheet
+  (sheet (at 5 15 0) (size 20 10)
+    (property "Sheetname" "PowerBuffer" (id 0) (at 5 15 0))
+    (property "Sheetfile" "sub.kicad_sch" (id 1) (at 5 15 0))
+    (uuid "cc100000-0000-0000-0000-000000000001")
+    (pin "SIGNAL" input (at 10 15 0)
+      (effects (font (size 1.27 1.27)))
+      (uuid "dd100000-0000-0000-0000-000000000001")
+    )
+  )
+)

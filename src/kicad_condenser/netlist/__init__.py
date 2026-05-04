@@ -1,0 +1,1 @@
+"""Net resolution package."""

@@ -1,0 +1,56 @@
+(kicad_sch
+  (version 20231120)
+  (generator kicad_condenser_test)
+  (uuid "ee100000-0000-0000-0000-000000000001")
+
+  (lib_symbols
+    (symbol "Device:C"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "C" (id 0) (at 0 0 0))
+      (property "Value" "C" (id 1) (at 0 0 0))
+      (property "Footprint" "" (id 2) (at 0 0 0))
+      (property "Datasheet" "~" (id 3) (at 0 0 0))
+      (symbol "C_1_1"
+        (pin passive line (at 0 1.016 270) (length 0)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -1.016 90) (length 0)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+  )
+
+  ; Hierarchical label "SIGNAL" connects to parent sheet pin
+  ; position (10, 5) — this is where the parent sheet pin "SIGNAL" maps to
+  (hierarchical_label "SIGNAL" (shape input) (at 10 5 0))
+
+  ; C1 at (10, 12):  pin2 abs=(10,10.984)=SIGNAL  pin1 abs=(10,13.016)=GND
+  (symbol "Device:C" (at 10 12 0) (unit 1) (in_bom yes) (on_board yes)
+    (uuid "ff100000-0000-0000-0000-000000000001")
+    (property "Reference" "C1" (id 0) (at 10 12 0))
+    (property "Value" "100n" (id 1) (at 10 12 0))
+    (property "Footprint" "Capacitor_SMD:C_0402" (id 2) (at 10 12 0))
+    (property "Datasheet" "~" (id 3) (at 10 12 0))
+    (instances
+      (project "hierarchical"
+        (path "/aa100000-0000-0000-0000-000000000001/cc100000-0000-0000-0000-000000000001"
+          (reference "C1")
+          (unit 1)
+        )
+      )
+    )
+  )
+
+  ; SIGNAL wire: hier_label (10,5) to C1-pin2 (10,10.984)
+  (wire (pts (xy 10 5) (xy 10 10.984)))
+
+  ; GND wire: C1-pin1 (10,13.016) to label (10,17)
+  (wire (pts (xy 10 13.016) (xy 10 17)))
+  (label "GND" (at 10 17 0))
+)
