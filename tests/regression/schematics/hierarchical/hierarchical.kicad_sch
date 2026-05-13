@@ -27,12 +27,17 @@
   )
 
   ; R1 at (10, 10):  pin2 abs=(10,8.984)=VCC  pin1 abs=(10,11.016)=SIGNAL
-  (symbol "Device:R" (at 10 10 0) (unit 1) (in_bom yes) (on_board yes)
+  (symbol
+    (lib_id "Device:R")
+    (at 10 10 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
     (uuid "bb100000-0000-0000-0000-000000000001")
-    (property "Reference" "R1" (id 0) (at 10 10 0))
-    (property "Value" "4k7" (id 1) (at 10 10 0))
-    (property "Footprint" "Resistor_SMD:R_0402" (id 2) (at 10 10 0))
-    (property "Datasheet" "~" (id 3) (at 10 10 0))
+    (property "Reference" "R1" (at 10 10 0))
+    (property "Value" "4k7" (at 10 10 0))
+    (property "Footprint" "Resistor_SMD:R_0402" (at 10 10 0))
+    (property "Datasheet" "~" (at 10 10 0))
     (instances
       (project "hierarchical"
         (path "/aa100000-0000-0000-0000-000000000001"

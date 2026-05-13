@@ -1,0 +1,100 @@
+{
+  "project": "resistor_divider",
+  "components": [
+    {
+      "reference": "#PWR01",
+      "value": "GND",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Power symbol creates a global label with name \"GND\" , ground"
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "power_in",
+          "net": null
+        }
+      ]
+    },
+    {
+      "reference": "#PWR02",
+      "value": "+3.3V",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Power symbol creates a global label with name \"+3.3V\""
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "power_in",
+          "net": null
+        }
+      ]
+    },
+    {
+      "reference": "R1",
+      "value": "R",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Resistor"
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "passive",
+          "net": null
+        },
+        {
+          "number": "2",
+          "name": "",
+          "type": "passive",
+          "net": "MID"
+        }
+      ]
+    },
+    {
+      "reference": "R2",
+      "value": "R",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Resistor"
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "passive",
+          "net": "MID"
+        },
+        {
+          "number": "2",
+          "name": "",
+          "type": "passive",
+          "net": null
+        }
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "MID",
+      "pins": [
+        {
+          "reference": "R1",
+          "pin": "2"
+        },
+        {
+          "reference": "R2",
+          "pin": "1"
+        }
+      ]
+    }
+  ]
+}

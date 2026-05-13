@@ -1,0 +1,100 @@
+{
+  "project": "RC",
+  "components": [
+    {
+      "reference": "#PWR01",
+      "value": "GND",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Power symbol creates a global label with name \"GND\" , ground"
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "power_in",
+          "net": null
+        }
+      ]
+    },
+    {
+      "reference": "#PWR02",
+      "value": "+3V3",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Power symbol creates a global label with name \"+3V3\""
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "power_in",
+          "net": null
+        }
+      ]
+    },
+    {
+      "reference": "C1",
+      "value": "10nF",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Unpolarized capacitor"
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "passive",
+          "net": null
+        },
+        {
+          "number": "2",
+          "name": "",
+          "type": "passive",
+          "net": "VOUT"
+        }
+      ]
+    },
+    {
+      "reference": "R1",
+      "value": "10R",
+      "footprint": "",
+      "datasheet": "",
+      "properties": {
+        "Description": "Resistor"
+      },
+      "pins": [
+        {
+          "number": "1",
+          "name": "",
+          "type": "passive",
+          "net": null
+        },
+        {
+          "number": "2",
+          "name": "",
+          "type": "passive",
+          "net": "VOUT"
+        }
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "name": "VOUT",
+      "pins": [
+        {
+          "reference": "C1",
+          "pin": "2"
+        },
+        {
+          "reference": "R1",
+          "pin": "2"
+        }
+      ]
+    }
+  ]
+}

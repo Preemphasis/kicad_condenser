@@ -184,8 +184,9 @@ def _unit_from_id(child_id: str) -> int:
 # ---------------------------------------------------------------------------
 
 def _parse_symbol_instance(sym_node: SExpr) -> SchematicSymbol:
-    """Parse a schematic-level (symbol "LIB_ID" ...) placement node."""
-    lib_id = sym_node[1]
+    """Parse a schematic-level (symbol (lib_id "LIB_ID") ...) placement node (KiCad 10+)."""
+    lib_id_node = find(sym_node, "lib_id")
+    lib_id = lib_id_node[1] if lib_id_node else ""
     x, y, angle = _at(sym_node)
 
     # Mirror flags come from 'mirror' token
@@ -363,10 +364,13 @@ def parse_schematic(path: Path) -> SchematicFile:
             lib_symbols[lib_sym.lib_id] = lib_sym
 
     # --- Symbol instances ---
+    # KiCad 10+ placed symbols use (symbol (lib_id "...") ...) format.
+    # Lib symbol definitions (in lib_symbols section) use a bare string first
+    # element and are already parsed above; they won't appear here as find_all
+    # only searches direct children of root.
     symbols: list[SchematicSymbol] = []
     for sym_node in find_all(root, "symbol"):
-        # Symbol instances always have a quoted string as first attribute
-        if len(sym_node) < 2 or not isinstance(sym_node[1], str):
+        if find(sym_node, "lib_id") is None:
             continue
         symbols.append(_parse_symbol_instance(sym_node))
 
