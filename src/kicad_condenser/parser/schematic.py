@@ -132,6 +132,14 @@ def _parse_lib_symbol(sym_node: SExpr) -> LibSymbol:
     extends_node = find(sym_node, "extends")
     extends = extends_node[1] if extends_node else None
 
+    # (power global) child indicates this symbol acts as an implicit global label
+    power_node = find(sym_node, "power")
+    power_global = (
+        power_node is not None
+        and len(power_node) > 1
+        and power_node[1] == "global"
+    )
+
     in_bom = _bool_token(sym_node, "in_bom")
     on_board = _bool_token(sym_node, "on_board")
     props = _properties(sym_node)
@@ -158,6 +166,7 @@ def _parse_lib_symbol(sym_node: SExpr) -> LibSymbol:
         extends=extends,
         in_bom=in_bom,
         on_board=on_board,
+        power_global=power_global,
         properties=props,
         pins=pins,
     )

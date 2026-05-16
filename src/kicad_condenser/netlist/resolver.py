@@ -256,6 +256,23 @@ def _build_sheet_graph(sch: SchematicFile) -> _SheetGraph:
         root = graph._uf.find(comp)
         graph.assign_name(root, hl.text)
 
+    # Power global symbols — a lib symbol marked (power global) acts as an
+    # implicit global label whose net name is the placed symbol's Value.
+    # There is no explicit wire; the pin position IS the connection point.
+    for sym in sch.symbols:
+        lib_sym = sch.lib_symbols.get(sym.lib_id)
+        if lib_sym is None or not lib_sym.power_global:
+            continue
+        net_name = sym.value
+        # Collect pins for this unit (unit 0 = common to all units)
+        power_pins = list(lib_sym.pins.get(0, []))
+        if sym.unit != 0:
+            power_pins.extend(lib_sym.pins.get(sym.unit, []))
+        for pin_def in power_pins:
+            abs_x, abs_y = _pin_absolute_position(sym, pin_def)
+            comp = graph.get_or_create_component(abs_x, abs_y)
+            graph.assign_name(graph._uf.find(comp), f"__GLOBAL__{net_name}")
+
     return graph
 
 
@@ -330,11 +347,16 @@ class _Resolver:
 
     def _propagate_globals(self) -> None:
         """Ensure all GlobalLabel components with the same text share a name."""
-        # Collect all global label texts used on any sheet
+        # Collect all global label texts — from explicit global_label nodes and
+        # from power global symbols (which act as implicit global labels).
         global_texts: set[str] = set()
         for sch in self._schematics.values():
             for gl in sch.global_labels:
                 global_texts.add(gl.text)
+            for sym in sch.symbols:
+                lib_sym = sch.lib_symbols.get(sym.lib_id)
+                if lib_sym is not None and lib_sym.power_global:
+                    global_texts.add(sym.value)
 
         for text in global_texts:
             # Assign the clean name (strip prefix) to all components with __GLOBAL__ prefix

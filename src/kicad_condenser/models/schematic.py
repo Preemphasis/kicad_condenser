@@ -33,6 +33,7 @@ class LibSymbol:
     extends: str | None  # parent symbol id if this is a derived symbol
     in_bom: bool = True
     on_board: bool = True
+    power_global: bool = False  # True when (power global) is present — acts as implicit global label
     properties: dict[str, str] = field(default_factory=dict)
     # Pins keyed by unit index (0 = common to all units)
     pins: dict[int, list[LibSymbolPin]] = field(default_factory=dict)

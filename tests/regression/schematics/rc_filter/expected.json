@@ -14,7 +14,7 @@
           "number": "1",
           "name": "",
           "type": "power_in",
-          "net": null
+          "net": "GND"
         }
       ]
     },
@@ -31,7 +31,7 @@
           "number": "1",
           "name": "",
           "type": "power_in",
-          "net": null
+          "net": "+3V3"
         }
       ]
     },
@@ -48,7 +48,7 @@
           "number": "1",
           "name": "",
           "type": "passive",
-          "net": null
+          "net": "GND"
         },
         {
           "number": "2",
@@ -71,7 +71,7 @@
           "number": "1",
           "name": "",
           "type": "passive",
-          "net": null
+          "net": "+3V3"
         },
         {
           "number": "2",
@@ -83,6 +83,32 @@
     }
   ],
   "nets": [
+    {
+      "name": "+3V3",
+      "pins": [
+        {
+          "reference": "#PWR02",
+          "pin": "1"
+        },
+        {
+          "reference": "R1",
+          "pin": "1"
+        }
+      ]
+    },
+    {
+      "name": "GND",
+      "pins": [
+        {
+          "reference": "#PWR01",
+          "pin": "1"
+        },
+        {
+          "reference": "C1",
+          "pin": "1"
+        }
+      ]
+    },
     {
       "name": "VOUT",
       "pins": [

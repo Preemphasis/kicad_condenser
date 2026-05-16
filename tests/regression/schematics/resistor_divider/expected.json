@@ -14,7 +14,7 @@
           "number": "1",
           "name": "",
           "type": "power_in",
-          "net": null
+          "net": "GND"
         }
       ]
     },
@@ -31,7 +31,7 @@
           "number": "1",
           "name": "",
           "type": "power_in",
-          "net": null
+          "net": "+3.3V"
         }
       ]
     },
@@ -48,7 +48,7 @@
           "number": "1",
           "name": "",
           "type": "passive",
-          "net": null
+          "net": "GND"
         },
         {
           "number": "2",
@@ -77,12 +77,38 @@
           "number": "2",
           "name": "",
           "type": "passive",
-          "net": null
+          "net": "+3.3V"
         }
       ]
     }
   ],
   "nets": [
+    {
+      "name": "+3.3V",
+      "pins": [
+        {
+          "reference": "#PWR02",
+          "pin": "1"
+        },
+        {
+          "reference": "R2",
+          "pin": "2"
+        }
+      ]
+    },
+    {
+      "name": "GND",
+      "pins": [
+        {
+          "reference": "#PWR01",
+          "pin": "1"
+        },
+        {
+          "reference": "R1",
+          "pin": "1"
+        }
+      ]
+    },
     {
       "name": "MID",
       "pins": [
